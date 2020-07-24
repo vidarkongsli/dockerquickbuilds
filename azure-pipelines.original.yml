@@ -1,0 +1,33 @@
+
+trigger:
+  branches:
+    include:
+      - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: npm@1
+  displayName: Npm install
+  inputs:
+    command: custom
+    customCommand: ci
+
+- task: npm@1
+  displayName: Run tests
+  inputs:
+    command: custom
+    customCommand: run test_ci
+
+- task: npm@1
+  displayName: Build app
+  inputs:
+    command: custom
+    customCommand: run build_ci
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish app files
+  inputs:
+    pathToPublish: dist
+    artifactName: app
