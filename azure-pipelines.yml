@@ -2,7 +2,7 @@
 variables:
   registryName: 'spdyng.azurecr.io'
   namePrefix: my-app
-  dockerRegistryServiceConnection: $(namePrefix)-acr
+  dockerRegistryServiceConnection: spdy-ng-acr
   repository: 'demos/$(namePrefix)'
   imageNameNoTag: $(registryName)/$(repository)
   imageName: $(imageNameNoTag):$(build.buildNumber)
