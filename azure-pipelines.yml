@@ -26,7 +26,7 @@ steps:
     containerRegistry: $(dockerRegistryServiceConnection)
 
 - pwsh: |
-    $hash = ((Get-Content './Dockerfile_agent','./testapp/package-lock.json' -Raw) -join '' | sha1sum -).Substring(0, 40)
+    $hash = ((Get-Content './Dockerfile_agent','./package-lock.json' -Raw) -join '' | sha1sum -).Substring(0, 40)
     echo "##vso[task.setvariable variable=hash;isOutput=false]$hash"
     echo "Hash is $hash"
     $serviceConnection = Get-Content '$(DOCKER_CONFIG)/config.json' | ConvertFrom-Json
